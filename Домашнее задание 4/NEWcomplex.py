@@ -49,6 +49,19 @@ class ComplexNumber:
         else:
             return drugoe.a * self.a - drugoe.b * self.b, drugoe.a * self.b + drugoe.b * self.a
 
+    def __floordiv__(self, drugoe):
+        if isinstance(drugoe, numbers.Number):
+            return round(self.a / drugoe, 3), round(self.b / drugoe, 3) #возвращаем округленное значение с 3мя знаками после запятой
+        else:
+            return (self.a * drugoe.a + self.b * drugoe.b) / (drugoe.a ** 2 + drugoe.b ** 2), (
+                        self.b * drugoe.a - self.a * drugoe.b) / (drugoe.a ** 2 + drugoe.b ** 2)
+
+    def __rfloordiv__(self, drugoe):
+        if isinstance(drugoe, numbers.Number):
+            return round(drugoe / self.a, 3), round(drugoe / self.b, 3)
+        return (drugoe.a * self.a + drugoe.b * self.b) / (self.a ** 2 + self.b ** 2), (
+                    drugoe.b * self.a - drugoe.a * self.b) / (self.a ** 2 + self.b ** 2)
+
 
 
 
@@ -59,3 +72,5 @@ class ComplexNumber:
 z1 = ComplexNumber(1, 1)
 z2 = ComplexNumber(2, 2)
 print(z1 + z2)
+print(z1 // z2)
+print(z1 // 7)
