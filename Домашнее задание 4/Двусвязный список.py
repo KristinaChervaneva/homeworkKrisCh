@@ -67,10 +67,32 @@ class List:
             arr.append(str(self[i]))
         return "[" + ", ".join(arr) + "]"
 
+    def pop(self, i):
+        t = List()
+        res = self[i]
+        for j in range(len(self) - 1):
+            if j < i:
+                t.append(self[j])
+            if j >= i:
+                t.append(self[j + 1])
+        self = t
+        return res
 
-A = List()
+    def __add__(self, other):
+        for i in range(len(other)):
+            self.append(other[i])
+        return self
+
+    def __radd__(self, other):
+        for i in range(len(self)):
+            other.append(self[i])
+        return other
+
+
+A = List(5)
 for i in range(5):
     A.append(i)
-for element in A:
-    print(element)
+
 print(A)
+a = A.pop(3)
+print(a)
