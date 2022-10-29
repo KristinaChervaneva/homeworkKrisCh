@@ -14,6 +14,14 @@ class ComplexNumber:
     def get(self): #геттер
         return self.a, self.b
 
+    def AlgebraToExp(self): #из алгебраической в экспоненциальную
+        self.a, self.b = math.sqrt(self.a * self.a + self.b * self.b), math.atan(self.b / self.a)
+        return
+
+    def ExpToAlgebra(self): #из экспоненциальной в алгебраическую
+        self.a, self.b = self.a * math.cos(self.b), self.a * math.sin(self.b)
+        return
+
     def __add__(self, drugoe):
         if isinstance(drugoe, numbers.Number):
             return self.a + drugoe, self.b
@@ -62,11 +70,33 @@ class ComplexNumber:
         return (drugoe.a * self.a + drugoe.b * self.b) / (self.a ** 2 + self.b ** 2), (
                     drugoe.b * self.a - drugoe.a * self.b) / (self.a ** 2 + self.b ** 2)
 
+    def __str__(self):
+        if self.b > 0:
+            return str(self.a) + ' + i*' + str(self.a)
+        if self.b < 0:
+            return str(self.a) + ' - i*' + str(-1 * self.b)
+        return str(self.a)
 
+    def __eq__(self, drugoe):
+        if isinstance(drugoe, numbers.Number):
+            return (self.a == drugoe and self.b == 0)
+        else:
+            return self.a == drugoe.a and self.b == drugoe.b
 
+    def __abs__(self):
+        return (self.a ** 2 + self.b ** 2) ** 0.5
 
+    def __getitem__(self, key): #вызов действительной и мнимой части через 0 и 1
+        if key == 0:
+            return self.a
+        elif key == 1:
+            return self.b
 
-
+    def __setitem__(self, key, value):
+        if key == 0:
+            self.a = value
+        elif key == 1:
+            self.b = value
 
 
 z1 = ComplexNumber(1, 1)
@@ -74,3 +104,4 @@ z2 = ComplexNumber(2, 2)
 print(z1 + z2)
 print(z1 // z2)
 print(z1 // 7)
+print(z2[1])
