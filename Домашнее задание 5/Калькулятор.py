@@ -141,8 +141,8 @@ except ValueError:
     print("Надо ввести числа!")
 else:
     try:
-        A = Complex(arr[0], arr[1])
-        B = Complex(arr[2], arr[3])
+        A = ComplexNumber(arr[0], arr[1])
+        B = ComplexNumber(arr[2], arr[3])
     except IndexError:
         print("Введено меньше 4х чисел")
 
