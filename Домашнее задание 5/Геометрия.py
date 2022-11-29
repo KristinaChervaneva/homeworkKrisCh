@@ -1,3 +1,5 @@
+import math
+
 class Point:
     def __init__(self, x=0, y=0):
         self._x = x
@@ -59,6 +61,24 @@ class Quadrangle(Shape):
     def perimeter(self):
         return round(self._dist1 + self._dist2 + self._dist3 + self._dist4, 2)
 
+class Rhomb(Quadrangle):
+    def __init__(self, p1, p2, p3, p4, type = "Ромб"):
+        super().__init__(p1, p2, p3, p4, type)
+
+    def area(self):
+        return round(0.5 * length(self._p1, self._p3) * length(self._p2, self._p4), 2)
+
+class Rectangle(Quadrangle):
+    def __init__(self, p1, p2, p3, p4, type = "Прямоугольник"):
+        super().__init__(p1, p2, p3, p4, type)
+
+    def area(self):
+        return round(self._dist1 * self._dist2, 2)
+
+class Square(Rectangle):
+    def __init__(self, p1, p2, p3, p4, type = "Квадрат"):
+        super().__init__(p1, p2, p3, p4, type)
+
 class Circle(Shape):
     def __init__(self, radius, centre, type = "Круг"):
         super().__init__(type)
@@ -72,3 +92,7 @@ class Circle(Shape):
     def perimeter(self):
         import math
         return 2 * length(self._centre, self._radius) * math.pi
+
+
+a = Circle(Point(0,0), Point(2,2))
+print(a)
