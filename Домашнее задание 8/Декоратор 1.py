@@ -1,4 +1,4 @@
-def inv_decorator1(func):
+def decorator1(func):
     def wrapper(*args):
         A = []
         for i in args:
@@ -8,7 +8,7 @@ def inv_decorator1(func):
         return func(*A)
     return wrapper
 
-@inv_decorator1
+@decorator1
 def foo(*args):
     return args
 
